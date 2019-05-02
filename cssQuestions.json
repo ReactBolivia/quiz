@@ -1,0 +1,86 @@
+{
+	"css_questions": [
+		{
+			"question": "¿Cuál característica de CSS nos permite hacer diseño responsive?",
+			"answers": ["Bight", "Media", "Width"],
+			"index_correct_answer": 1
+		},
+		{
+			"question": "¿Con qué característica podemos darle espaciado a los elementos de una pagina web?",
+			"answers": ["Con padding, margin o border", "Con Space", "Con Js"],
+			"index_correct_answer": 0
+		},
+		{
+			"question": "¿Cuál es la diferencia entre clase y id en css?",
+			"answers": ["Id es un atributo con valor único mientras que el atributo clase puede ser usado en más de un elemento en tu código html", "El atributo id lo usamos para definir estilos y el atributo clase para definir colores", "El atributo id se puede usar en más de un elemento en tu código html y el atributo clase solo una vez"],
+			"index_correct_answer": 0
+		},
+		{
+			"question": "¿Qué unidad utilizamos para construir columnas responsive?",
+			"answers": ["px", "%"],
+			"index_correct_answer": 1
+		},
+		{
+			"question": "¿Cómo insertar un comentario en un archivo CSS?",
+			"answers": ["// esto es un comentario", "/* Esto es un comentario */", "// esto es un comentario //"],
+			"index_correct_answer": 1
+		},
+		{
+			"question": "¿Qué propiedad CSS controla el tamaño del texto?",
+			"answers": [
+				"font-size",
+				"text-size",
+				"font-style"
+			],
+			"index_correct_answer": 0
+		},
+		{
+			"question": "¿Qué propiedad se usa para cambiar el color de fondo?",
+			"answers": ["bgcolor", "background-color", "color"],
+			"index_correct_answer": 1
+		},
+
+		{
+			"question": "¿Cuál de los siguientes NO es una unidad de longitud CSS válida?",
+			"answers": ["cm", "em", "dm"],
+			"index_correct_answer": 2
+		},
+		{
+			"question": "¿Cuál de los siguientes selectores selecciona descendientes directos?",
+			"answers": ["E ~ F", "E + F", "E > F"],
+			"index_correct_answer": 2
+		},
+		{
+			"question": "¿Cuál de las siguientes es la forma correcta de aplicar estilos?",
+			"answers": ["dentro de un elemento HTML", "en un archivo CSS externo", "todo lo anterior"],
+			"index_correct_answer": 2
+		},
+		{
+			"question": "¿Cómo hacer que el texto en negrita?",
+			"answers": ["font:b", "font-weight:bold", "style:bold"],
+			"index_correct_answer": 1
+		},
+
+		{
+			"question": "¿Qué etiqueta HTML se usa para definir una hoja de estilo interna?",
+			"answers": ["<style>", "<css>", "<script>"],
+			"index_correct_answer": 0
+		},
+
+		{
+			"question": "¿Qué atributo HTML se usa para definir los estilos en línea?",
+			"answers": ["class", "styles", "style"],
+			"index_correct_answer": 2
+		},
+
+		{
+			"question": "¿Cuál es el HTML correcto para referirse a una hoja de estilo externa",
+			"answers": [
+				"<stylesheet>mystyle.css</stylesheet />",
+				"<style src='mystyle.css' />",
+				"<link rel='stylesheet' type='text/css' href='mystyle.css'>"
+			],
+			"index_correct_answer": 2
+		}
+	]
+}
