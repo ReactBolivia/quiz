@@ -1,5 +1,5 @@
 {
-	"CSS_questions": [
+	"CSS": [
 		{
 			"question": "¿Cuál característica de CSS nos permite hacer diseño responsive?",
 			"answers": ["Bight", "Media", "Width"],
@@ -81,6 +81,63 @@
 				"<link rel='stylesheet' type='text/CSS' href='mystyle.CSS'>"
 			],
 			"index_correct_answer": 2
+		}
+    ],
+    "HTML": [
+		{
+			"question": "¿Qué entiende por HTML? ",
+			"answers": ["Hyper Text Mask Language", "Hard Text Markup Language", "Hyper Text Markup Language"],
+			"index_correct_answer": 2
+		},
+		{
+			"question": "¿Qué etiqueta utilizamos para definir el cuerpo del documento?",
+			"answers": ["<background>", "<body>", "<b>"],
+			"index_correct_answer": 1
+		},
+		{
+			"question": "¿Qué etiqueta utilizamos para insertar una línea horizontal? ",
+			"answers": ["<br>", "<hr>", "<line>"],
+			"index_correct_answer": 1
+		},
+		{
+			"question": "¿Cuál es la forma correcta de insertar un comentario?",
+			"answers": ["<!--...-->", "<¡--...--!>", "/** */"],
+			"index_correct_answer": 0
+		},
+		{
+			"question": "Elija la etiqueta apropiada para un texto en negrita.",
+			"answers": ["<bold>", "<bb>", "<b>"],
+			"index_correct_answer": 2
+		},
+		{
+			"question": "¿Cuál es la forma correcta de crear un vínculo? ",
+			"answers": [
+				"<a target='www.reactbolivia.com'>...</a>",
+				"<a href='www.reactbolivia.com'>...</a>",
+				"<a url='www.reactbolivia.com'>...</a>"
+			],
+			"index_correct_answer": 1
+		},
+		{
+			"question": "¿Qué etiqueta define la fila de una tabla? ",
+			"answers": ["<tr>", "<td>", "<row>"],
+			"index_correct_answer": 0
+		},
+
+		{
+			"question": "¿Qué etiqueta define una lista ordenada?",
+			"answers": ["<ol>", "<ul>", "<li>"],
+			"index_correct_answer": 0
+		},
+		{
+			"question": "Elija la etiqueta apropiada para hacer una lista desplegable",
+			"answers": ["<input type='list'>", "<input type='menu'>", "<select>"],
+			"index_correct_answer": 2
+		},
+		{
+			"question": "¿Cómo definimos un área de texto?",
+			"answers": ["<textarea>", "<input type='textarea'>", "<input type='text'>"],
+			"index_correct_answer": 0
 		}
 	]
 }

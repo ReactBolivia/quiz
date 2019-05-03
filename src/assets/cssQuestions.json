@@ -1,5 +1,5 @@
 {
-	"CSS_questions": [
+	"CSS": [
 		{
 			"question": "¿Cuál característica de CSS nos permite hacer diseño responsive?",
 			"answers": ["Bight", "Media", "Width"],
