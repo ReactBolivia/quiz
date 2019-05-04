@@ -236,7 +236,8 @@ class App extends Component {
         this.setState({
             isLoading: true
         });
-
+        const percentage = (data.score * 100).toFixed(2);
+        console.log(data.score * 100)
         if(true){
             this.setState({
                 isLoading: false,
@@ -245,8 +246,8 @@ class App extends Component {
                 isLoadingSuccessMsg: 'Su formulario fue enviado con éxito, debajo podrá ver sus resultados',
                 isSubmitted: true,
                 results: {
-                    data: [['CSS', data.css.length], ['HTML', data.html.length]],
-                    score: data.score
+                    data: [['CSS', data.css.length], ['HTML', data.html.length], ['JS', data.js.length]],
+                    score: percentage
                 }
             });
         }
@@ -265,7 +266,7 @@ class App extends Component {
                                 <h1 style={{textAlign: 'center', color: '#fff'}}> React Bolivia Workshop</h1>  
                                 <p style={{color: '#fff'}}>
                                     En esta ocasión la comunidad organiza un <span style={{fontWeight: 'bold'}}>taller práctico</span>
-                                    en el que seleccionaremos solamente a las <span style={{fontWeight: 'bold'}}>30 mejores postulaciones</span>. <br/>
+                                     en el que seleccionaremos solamente a las <span style={{fontWeight: 'bold'}}>30 mejores postulaciones</span>. <br/>
                                     Esto es debido a que tenemos espacio limitado para 30 personas, en los ambientes de la Universidad Del Valle que
                                     es nuestra auspiciadora en esta ocasión, por favor llene todos los campos.
                                 </p>
@@ -360,20 +361,15 @@ class App extends Component {
                             </Form>
                             { this.state.isSubmitted && 
                             <Col>
+                                <Col md={{span: 4, offset: 4}}>
+                                <div className="results">
+                                    <span className="results-percentage" style={{color: '#fff'}}>{`${this.state.results.score}%`}</span>
+                                </div>
+                                </Col>
                                 <Fade
                                     timeout={1000} 
-                                    in={!this.state.isSubmitted}>
-                                    <div id="example-collapse-text">
-                                        <Figure>
-                                            <Figure.Image
-                                                rounded
-                                                width={150}
-                                                height={150}
-                                            />
-                                            <Figure.Caption>
-                                                { this.state.results.score }
-                                            </Figure.Caption>
-                                        </Figure>;
+                                    in={this.state.isSubmitted}>
+                                    <div id="example-collapse-text" style={{marginBottom: 20}}>
                                         <BarChart 
                                             colors={["#EF476F", "#FF5722", "#4CD964"]}
                                             min={0} max={30}

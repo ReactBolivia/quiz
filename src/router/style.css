@@ -32,6 +32,30 @@ button[disabled]{
 }
 
 .jumbotron-container{
+    margin-top: 20px;
     border-radius: 10px;
     background-image: linear-gradient(to bottom right, #1F1F21, #5856D6 );
+}
+
+.results-percentage{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: '#fff';
+    font-size: 45px;
+    text-align: center;
+}
+
+.results{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    border: rgba(255, 255, 255, 0.25) solid 3px;
+    background-image: linear-gradient(to bottom right, #1F1F21, #5856D6 );
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
