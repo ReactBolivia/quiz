@@ -139,5 +139,57 @@
 			"answers": ["<textarea>", "<input type='textarea'>", "<input type='text'>"],
 			"index_correct_answer": 0
 		}
+	],
+	"JS": [
+		{
+			"question": "¿Qué significa JS y Java es igual a JS?",
+			"answers": ["Javascript, y no son lo mismo", "Jscript, y no son lo mismo", "Javascript y comparten ciertos componentes"],
+			"index_correct_answer": 0
+		},
+		{
+			"question": "¿Cuál de los objetos JS tiene correcta sintaxis?",
+			"answers": ["{ name: 'Felipa', useReact: verdad }", "{ name: 'Felipa', useReact: true}", "{ name: Felipa, useReact: verdad }"],
+			"index_correct_answer": 1
+		},
+		{
+			"question": "¿Cuál es el método para agregar un elemento al final de un array en JS?",
+			"answers": ["Array.push()", "Array.append()",  "Array.put()"],
+			"index_correct_answer": 0
+		},
+		{
+			"question": "¿Para que sirve la función Object.assign()?",
+			"answers": ["Crea un nuevo objeto basado en n objetos como argumentos", "Asigna una nueva propiedad a un objeto JS", "Es una función innmutable y es mejor no usarla"],
+			"index_correct_answer": 0
+		},
+		{
+			"question": "¿Cuál es la función para agregar un nodo al final de un elemento HTML?",
+			"answers": ["element.addChild(node)", "element.addChild(node)", "element.appendChild(node)"],
+			"index_correct_answer": 2
+		},
+		{
+			"question": "¿Cuál función permite agregar una clase CSS de forma dinámica en JS?",
+			"answers": ["element.class = 'clase-x'", "element.className = 'clase-x'",  "element.ClassName = 'clase-x'"],
+			"index_correct_answer": 1
+		},
+		{
+			"question": "¿Cuál es la etiqueta HTML para crear código JS en el mismo archivo HTML?",
+			"answers": ["<script/>", "<js></js>", "<script></script>"],
+			"index_correct_answer": 2
+		},
+		{
+			"question": "¿Qué función cumple filter() para un array de JS?",
+			"answers": ["Dada una condición, retorna solamente los elementos del array que cumplan la condición", "Dada una condición, retorna solamente los elementos del array que no cumplan la condición", "Crea un nuevo array concatenando cada elemento del array"],
+			"index_correct_answer": 0
+		},
+		{
+			"question": "¿Cuál función agrega un evento 'click' a un elemento HTML?",
+			"answers": ["element.addEventListener('onClick', function(){})", "element.addEventListener('click', function(){} )", "element.attachNewEventListener('click',function(){} )"],
+			"index_correct_answer": 2
+		},
+		{
+			"question": "¿Para qué funciona la función XMLHttpRequest?",
+			"answers": ["Permite realizar una petición HTTP de forma asíncrona con el servidor", "Es una función deprecada que ya no es utilizada en la actualidad", "Permite realizar una llamada al servidor"],
+			"index_correct_answer": 0
+		}
 	]
 }
