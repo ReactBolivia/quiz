@@ -280,6 +280,7 @@ class App extends Component {
                             { this.state.isSubmitted && 
                             <Col>
                                 <Col md={{span: 4, offset: 4}}>
+                                <h4 style={{textAlign: 'center'}}>Tu puntaje</h4>
                                 <div className="results">
                                     <span className="results-percentage" style={{color: '#fff'}}>{`${this.state.results.score}%`}</span>
                                 </div>
@@ -300,10 +301,10 @@ class App extends Component {
                         <Col style={{paddingTop: 20}} md={4} className="marketing-container">
                             <ListGroup>
                             <ListGroup.Item><strong>Contacto:</strong></ListGroup.Item>
-                            <ListGroup.Item> (+591) 70162630, Pablo M. Jordan</ListGroup.Item>
-                            <ListGroup.Item> (+591) 60684585, David Paredes</ListGroup.Item>
                             <ListGroup.Item> (+591) 67341446, Arnol Robles</ListGroup.Item>
+                            <ListGroup.Item> (+591) 60684585, David Paredes</ListGroup.Item>
                             <ListGroup.Item> (+591) 60101082, Mauricio de la Quintana </ListGroup.Item>
+                            <ListGroup.Item> (+591) 70162630, Pablo M. Jordan</ListGroup.Item>
                             </ListGroup>
                         </Col>
                     </Row>

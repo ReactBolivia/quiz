@@ -184,7 +184,7 @@
 		{
 			"question": "¿Cuál función agrega un evento 'click' a un elemento HTML?",
 			"answers": ["element.addEventListener('onClick', function(){})", "element.addEventListener('click', function(){} )", "element.attachNewEventListener('click', function(){} )"],
-			"index_correct_answer": 2
+			"index_correct_answer": 1
 		},
 		{
 			"question": "¿Para qué funciona la función XMLHttpRequest?",
