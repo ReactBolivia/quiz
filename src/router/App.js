@@ -75,6 +75,7 @@ class App extends Component {
     }
 
     checkField(type, indexAnswer, indexOption){
+        console.log(type, indexAnswer, indexOption);
         // copy type questionare
         const copy = this.state[type];
         // update right index checking field 'checked' as the index of the option chosen
@@ -176,26 +177,15 @@ class App extends Component {
             <div className="App">
                 <Container fluid>
                     <Row>
-                        <Col md={4} className="marketing-container">
-                            <Image src={banner} fluid style={{marginTop: 20, borderRadius: 10}} />
-                            <ListGroup>
-                            <ListGroup.Item><strong>Contacto:</strong></ListGroup.Item>
-                            <ListGroup.Item> (+591) 70162630, Pablo M. Jordan</ListGroup.Item>
-                            <ListGroup.Item> (+591) 60684585, David Paredes</ListGroup.Item>
-                            <ListGroup.Item> (+591) 67341446, Arnol Robles</ListGroup.Item>
-                            <ListGroup.Item> (+591) 60101082, Mauricio de la Quintana </ListGroup.Item>
-                            </ListGroup>
-                        </Col>
                         <Col md={8} style={{backgroundColor: '#f9f9f9'}}>
                             <Jumbotron className="jumbotron-container" fluid style={{padding: 30}}>
-                                <img
-                                    src={iconReact}
-                                    style={{marginLeft: 'auto', marginRight: 'auto', width: 100, height: 100}}/>
-                                <h1 style={{textAlign: 'center', color: '#fff'}}> React Bolivia Workshop</h1>  
+                                <Image src={banner} fluid style={{marginTop: 20, borderRadius: 10}} />
+
+                                <h1 style={{textAlign: 'center', color: '#fff'}}> React JS Workshop</h1>  
                                 <p style={{color: '#fff'}}>
-                                    En esta ocasión la comunidad organiza un <span style={{fontWeight: 'bold'}}>taller práctico</span>
+                                    En esta ocasión la comunidad organiza un <span style={{fontWeight: 'bold'}}>taller práctico</span> el 18 de mayo 
                                      en el que seleccionaremos solamente a las <span style={{fontWeight: 'bold'}}>30 mejores postulaciones</span>. <br/>
-                                    Esto es debido a que tenemos espacio limitado para 30 personas, en los ambientes de la Universidad Del Valle que
+                                    Esto es debido a que tenemos espacio limitado para 30 personas, en los ambientes de la Universidad Privada Del Valle que
                                     es nuestra auspiciadora en esta ocasión, por favor llene todos los campos.
                                 </p>
                             </Jumbotron>
@@ -243,7 +233,7 @@ class App extends Component {
                                 <Button 
                                     onClick={() => this.startTest()}
                                     variant="outline-success" size="lg" block style={{marginTop: 50, marginBottom: 25}}>
-                                    Entendido, empezar
+                                    Entendido, empezar 😎
                                 </Button>
                                 <Collapse in={this.state.showForm}>
                                     <div id="example-collapse-text">
@@ -307,7 +297,15 @@ class App extends Component {
                             </Col>
                             }
                         </Col>
-                        
+                        <Col style={{paddingTop: 20}} md={4} className="marketing-container">
+                            <ListGroup>
+                            <ListGroup.Item><strong>Contacto:</strong></ListGroup.Item>
+                            <ListGroup.Item> (+591) 70162630, Pablo M. Jordan</ListGroup.Item>
+                            <ListGroup.Item> (+591) 60684585, David Paredes</ListGroup.Item>
+                            <ListGroup.Item> (+591) 67341446, Arnol Robles</ListGroup.Item>
+                            <ListGroup.Item> (+591) 60101082, Mauricio de la Quintana </ListGroup.Item>
+                            </ListGroup>
+                        </Col>
                     </Row>
                 </Container>
             </div>

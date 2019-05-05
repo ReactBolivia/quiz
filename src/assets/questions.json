@@ -183,7 +183,7 @@
 		},
 		{
 			"question": "¿Cuál función agrega un evento 'click' a un elemento HTML?",
-			"answers": ["element.addEventListener('onClick', function(){})", "element.addEventListener('click', function(){} )", "element.attachNewEventListener('click',function(){} )"],
+			"answers": ["element.addEventListener('onClick', function(){})", "element.addEventListener('click', function(){} )", "element.attachNewEventListener('click', function(){} )"],
 			"index_correct_answer": 2
 		},
 		{
