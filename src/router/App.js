@@ -184,9 +184,9 @@ class App extends Component {
                                 <h1 style={{textAlign: 'center', color: '#fff'}}> React JS Workshop</h1>  
                                 <p style={{color: '#fff'}}>
                                     En esta ocasión la comunidad organiza un <span style={{fontWeight: 'bold'}}>taller práctico</span> el 18 de mayo 
-                                     en el que seleccionaremos solamente a las <span style={{fontWeight: 'bold'}}>30 mejores postulaciones</span>. <br/>
+                                     en el que seleccionaremos solamente a las <span style={{fontWeight: 'bold'}}>30 mejores postulaciones</span> mediante un cuestionario de HTML, CSS y JS. <br/>
                                     Esto es debido a que tenemos espacio limitado para 30 personas, en los ambientes de la Universidad Privada Del Valle que
-                                    es nuestra auspiciadora en esta ocasión, por favor llene todos los campos.
+                                    es nuestra auspiciadora en esta ocasión, si conoces estas tecnologías únete a este desafío 💪 y aprende la tecnología web más moderna, React, por favor llene todos los campos.
                                 </p>
                             </Jumbotron>
                             <Form>
