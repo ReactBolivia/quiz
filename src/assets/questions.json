@@ -54,34 +54,8 @@
 			"question": "¿Cuál de las siguientes es la forma correcta de aplicar estilos?",
 			"answers": ["dentro de un elemento HTML", "en un archivo CSS externo", "todo lo anterior"],
 			"index_correct_answer": 2
-		},
-		{
-			"question": "¿Cómo hacer que el texto en negrita?",
-			"answers": ["font:b", "font-weight:bold", "style:bold"],
-			"index_correct_answer": 1
-		},
-
-		{
-			"question": "¿Qué etiqueta HTML se usa para definir una hoja de estilo interna?",
-			"answers": ["<style>", "<CSS>", "<script>"],
-			"index_correct_answer": 0
-		},
-
-		{
-			"question": "¿Qué atributo HTML se usa para definir los estilos en línea?",
-			"answers": ["class", "styles", "style"],
-			"index_correct_answer": 2
-		},
-
-		{
-			"question": "¿Cuál es el HTML correcto para referirse a una hoja de estilo externa",
-			"answers": [
-				"<stylesheet>mystyle.CSS</stylesheet />",
-				"<style src='mystyle.CSS' />",
-				"<link rel='stylesheet' type='text/CSS' href='mystyle.CSS'>"
-			],
-			"index_correct_answer": 2
 		}
+		
     ],
     "HTML": [
 		{

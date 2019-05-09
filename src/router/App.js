@@ -12,6 +12,24 @@ import {
 import { BarChart  } from 'react-chartkick'
 import Chart from 'chart.js'
 
+
+const formatData = (num) =>  num >= 10 ? num : `0${num}` 
+
+
+const Timer = props => {
+    if(props.start){
+        return (
+            <div style={{padding: 5, border: '1px solid #1F1F21', borderRadius: 5, backgroundColor: 'rgba(0, 0, 0, 0.1)'}}>
+                <span style={{padding: 5, textAlign:'center', fontWeight: 'bold', fontSize: 16}}> 
+                    {`${formatData(props.min)}:${formatData(props.sec)}`} 
+                </span>
+            </div>
+        );
+    }
+    return null;
+    
+}
+
 const Questions = props => {
     return(
         <>
@@ -59,6 +77,8 @@ class App extends Component {
             alias: '',
             email: '',
             name: '',
+            age: 0,
+            profesion: '',
             gender: null,
             showForm: false,
             quizStarted: false,
@@ -71,11 +91,17 @@ class App extends Component {
             isLoading: false,
             isLoadingSuccess: true,
             isLoadingSuccessMsg: '',
+            timer: {
+                min: 15, 
+                sec: 0,
+            },
+            disableStart: false,
         };
+
+        this.startCounter = this.startCounter.bind(this);
     }
 
     checkField(type, indexAnswer, indexOption){
-        console.log(type, indexAnswer, indexOption);
         // copy type questionare
         const copy = this.state[type];
         // update right index checking field 'checked' as the index of the option chosen
@@ -131,18 +157,66 @@ class App extends Component {
         const htmlCorrect = HTML.filter(e => e.checked == e.index_correct_answer);
         const jsCorrect = JS.filter(e => e.checked == e.index_correct_answer);
         const sum = cssCorrect.length + htmlCorrect.length + jsCorrect.length;
+        const cssAnswer = CSS.map(e => { return e.checked ? { marked: e.checked, question: e.question } : null }).filter(e => e != null);
+        const htmlAnswer = HTML.map(e => { return e.checked ? { marked: e.checked, question: e.question } : null }).filter(e => e != null);
+        const jsAnswer = JS.map(e => { return e.checked ? { marked: e.checked, question: e.question } : null }).filter(e => e != null);
         return {
-            css: cssCorrect, 
-            html: htmlCorrect,
-            js: jsCorrect,
+            results: {
+                css: cssCorrect, 
+                html: htmlCorrect,
+                js: jsCorrect,
+            },
+            userResults: {
+                css: cssAnswer, 
+                html: htmlAnswer,
+                js: jsAnswer,
+            },
             score: this.normalize(sum)
         };        
     }
 
-    startCounter(){}
+    startCounter(){
+        this.t = setInterval(() => this.thick(), 1000);
+    }
 
-    submit(){
-        const { email, name, gender, CSS, HTML, } = this.state;
+
+    thick(){
+        const { JS, HTML, CSS } = this.state;
+        const { min, sec, } = this.state.timer;
+        if(min === 0 && sec === 0){
+            clearInterval(this.t);
+            const disable_js = JS.map(e => {  return {...e, disabled: true} });
+            const disable_html = JS.map(e => {  return {...e, disabled: true} });
+            const disable_css = JS.map(e => {  return {...e, disabled: true} });
+            this.setState({
+                JS: disable_js,
+                CSS: disable_css,
+                HTML: disable_html,
+                disableStart: true,
+            });
+            return;
+        }
+        let newSec;
+        let newMin;
+        if(sec > 0){
+            newSec = sec - 1;
+            newMin = min;
+        }
+        if(sec === 0){
+            newSec = 59;
+            newMin = min - 1;
+        }
+        this.setState({
+            timer: {
+                ...this.state.timer,
+                sec: newSec,
+                min: newMin,
+            }
+        });
+    }
+
+    async submit(){
+        const { email, name, gender, CSS, HTML, age, profesion } = this.state;
         if(!this.validatePersonalData()){
             this.setState({
                 isLoading: false,
@@ -154,26 +228,94 @@ class App extends Component {
         }
         const data = this.getResults();
         this.setState({
-            isLoading: true
+            isLoading: true,
+            isLoadingSuccess: true,
         });
         const percentage = (data.score * 100).toFixed(2);
-        if(true){
+        const form = {
+            encuestaId: 4,
+            preguntas:[
+                {
+                    respuesta: age,
+                    id: 26,
+                    fecha_creacion: '2019-05-07',
+                    fecha_creacion: '2019-05-07',
+                },
+                {
+                    respuesta: profesion,
+                    id: 27,
+                    fecha_creacion: '2019-05-07',
+                    fecha_creacion: '2019-05-07',
+                },
+                {
+                    respuesta: email,
+                    id: 24,
+                    fecha_creacion: '2019-05-07',
+                    fecha_creacion: '2019-05-07',
+                },
+                {
+                    respuesta: JSON.stringify(data.userResults),
+                    id: 28,
+                    fecha_creacion: '2019-05-07',
+                    fecha_creacion: '2019-05-07',
+                },
+                {
+                    respuesta: data.score,
+                    id: 29,
+                    fecha_creacion: '2019-05-07',
+                    fecha_creacion: '2019-05-07',
+                },
+            ]
+        };
+        try{
+            let response =
+              await fetch(`https://www.isoc.bo/isocbo/public/api/survey`, {
+                method: 'POST',
+                body: JSON.stringify(form)
+              });
+            const res = await response.json();
+            this.setState({
+                isLoading: false
+            });
+            if(res.success){
+                this.setState({
+                    quizStarted: false,
+                    disableStart: true,
+                    isLoading: false,
+                    isLoadingSuccess: true,
+                    isLoadingSuccessMsgError: 'success',
+                    isLoadingSuccessMsg: 'Su formulario fue enviado con éxito, debajo podrá ver sus resultados',
+                    isSubmitted: true,
+                    results: {
+                        data: [['CSS', data.results.css.length], ['HTML', data.results.html.length], ['JS', data.results.js.length]],
+                        score: percentage
+                    }
+                });
+                return;
+            }else{
+                this.setState({
+                    isLoading: false,
+                    isLoadingSuccess: false,
+                    isLoadingSuccessMsg: 'Hubo un error al enviar su cuestionario, inténtelo nuevamente',
+                    isLoadingSuccessMsgError: 'danger',
+                });
+                return;
+            }
+          }catch(e){
             this.setState({
                 isLoading: false,
-                isLoadingSuccess: true,
-                isLoadingSuccessMsgError: 'success',
-                isLoadingSuccessMsg: 'Su formulario fue enviado con éxito, debajo podrá ver sus resultados',
-                isSubmitted: true,
-                results: {
-                    data: [['CSS', data.css.length], ['HTML', data.html.length], ['JS', data.js.length]],
-                    score: percentage
-                }
+                isLoadingSuccess: false,
+                isLoadingSuccessMsg: 'Hubo un error al enviar su cuestionario, inténtelo nuevamente',
+                isLoadingSuccessMsgError: 'danger',
             });
-        }
+            return;
+          }
+        
     }
 
     render(){
-        return (
+        const {  min, sec } = this.state.timer;
+        return ( 
             <div className="App">
                 <Container fluid>
                     <Row>
@@ -215,6 +357,27 @@ class App extends Component {
                                         Verifica que tu correo electrónico sea el correcto, pues lo utilizaremos para contactarte y mandarte contenido promocional.
                                     </Form.Text>
                                 </Form.Group>
+                                <Form.Group controlId="formName">
+                                    <Form.Label>Edad</Form.Label>
+                                    <Form.Control 
+                                        name="age"
+                                        value={this.state.age}
+                                        onChange={this.fillForm.bind(this)}
+                                        type="number" 
+                                        placeholder="Tu edad" />
+                                </Form.Group>
+                                <Form.Group controlId="formName">
+                                    <Form.Label>Profesión</Form.Label>
+                                    <Form.Control 
+                                        name="profesion"
+                                        value={this.state.profesion}
+                                        onChange={this.fillForm.bind(this)}
+                                        type="text" 
+                                        placeholder="Tu profesión" />
+                                    <Form.Text className="text-muted" >
+                                        Queremos saber si eres estudiante, o tienes una profesión específica
+                                    </Form.Text>
+                                </Form.Group>
                                 <Form.Group controlId="formBasicEmail">
                                     <Form.Label>Género</Form.Label> <br/>
                                     <Form.Check 
@@ -230,13 +393,17 @@ class App extends Component {
                                         Tendrás 15 minutos para resolver todo el cuestionario, buena suerte 😉
                                     </Form.Text>
                                 </Form.Group>
+                                
                                 <Button 
                                     onClick={() => this.startTest()}
-                                    variant="outline-success" size="lg" block style={{marginTop: 50, marginBottom: 25}}>
+                                    variant="outline-success" size="lg" block style={{marginTop: 50, marginBottom: 25}}
+                                    disabled={this.state.disableStart}>
                                     Entendido, empezar 😎
                                 </Button>
+                                
                                 <Collapse in={this.state.showForm}>
                                     <div id="example-collapse-text">
+                                        
                                         <Questions
                                             _checkField={this.checkField.bind(this)}
                                             data={this.state.HTML}
@@ -279,7 +446,7 @@ class App extends Component {
                             </Form>
                             { this.state.isSubmitted && 
                             <Col>
-                                <Col md={{span: 4, offset: 4}}>
+                                <Col md={{span: 4, offset: 5}}>
                                 <h4 style={{textAlign: 'center'}}>Tu puntaje</h4>
                                 <div className="results">
                                     <span className="results-percentage" style={{color: '#fff'}}>{`${this.state.results.score}%`}</span>
@@ -291,7 +458,7 @@ class App extends Component {
                                     <div id="example-collapse-text" style={{marginBottom: 20}}>
                                         <BarChart 
                                             colors={["#EF476F", "#FF5722", "#4CD964"]}
-                                            min={0} max={30}
+                                            min={0} max={10}
                                             data={this.state.results.data} />
                                     </div>
                                 </Fade>
@@ -301,14 +468,24 @@ class App extends Component {
                         <Col style={{paddingTop: 20}} md={4} className="marketing-container">
                             <ListGroup>
                             <ListGroup.Item><strong>Contacto:</strong></ListGroup.Item>
+                            <ListGroup.Item> (+591) 70162630, Pablo M. Jordan</ListGroup.Item>
                             <ListGroup.Item> (+591) 67341446, Arnol Robles</ListGroup.Item>
                             <ListGroup.Item> (+591) 60684585, David Paredes</ListGroup.Item>
                             <ListGroup.Item> (+591) 60101082, Mauricio de la Quintana </ListGroup.Item>
-                            <ListGroup.Item> (+591) 70162630, Pablo M. Jordan</ListGroup.Item>
                             </ListGroup>
                         </Col>
                     </Row>
                 </Container>
+                {   this.state.quizStarted &&
+                    <div style={{display: 'block', width: '100%', height: 60, padding: 20}}>
+                        <div style={{position: 'fixed', padding: 20, bottom: 20, left: '50%', height: 50, width: 200, textAlign: 'center', }}>
+                            <Timer
+                                start={this.state.quizStarted}
+                                min={min}
+                                sec={sec}/>
+                        </div>
+                    </div>
+                }
             </div>
             );
     }
