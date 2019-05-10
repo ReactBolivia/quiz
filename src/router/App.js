@@ -11,7 +11,7 @@ import {
 } from 'react-bootstrap';
 import { BarChart  } from 'react-chartkick'
 import Chart from 'chart.js'
-
+import axios from 'axios';
 
 const formatData = (num) =>  num >= 10 ? num : `0${num}` 
 
@@ -236,6 +236,12 @@ class App extends Component {
             encuestaId: 4,
             preguntas:[
                 {
+                    respuesta: name,
+                    id: 25,
+                    fecha_creacion: '2019-05-07',
+                    fecha_creacion: '2019-05-07',
+                },
+                {
                     respuesta: age,
                     id: 26,
                     fecha_creacion: '2019-05-07',
@@ -269,15 +275,18 @@ class App extends Component {
         };
         try{
             let response =
-              await fetch(`https://www.isoc.bo/isocbo/public/api/survey`, {
-                method: 'POST',
-                body: JSON.stringify(form)
-              });
-            const res = await response.json();
+            await axios.post(`https://www.isoc.bo/isocbo/public/api/survey`, form, {
+            // await axios.post(`http://localhost:8000/api/survey`, form, {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+            })
             this.setState({
                 isLoading: false
             });
-            if(res.success){
+            console.log(response);
+            
+            if(response.data.success){
                 this.setState({
                     quizStarted: false,
                     disableStart: true,
@@ -302,6 +311,7 @@ class App extends Component {
                 return;
             }
           }catch(e){
+            console.log(e)
             this.setState({
                 isLoading: false,
                 isLoadingSuccess: false,
